@@ -95,7 +95,7 @@ if __name__ == "__main__":
             else:
                 if line == "\n":
                     mewImg = img.crop((0, 0,680, posY+55))
-                    mewImg.save(slugify(title)+'.png')
+                    mewImg.save('img/'+slugify(title)+'.png')
                 else:
                     print(line)
                     print ("Error with text file while create png for ",title)
