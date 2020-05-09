@@ -1,4 +1,4 @@
 .idea
 venv
 text.txt
-img/*
+img/*.png
