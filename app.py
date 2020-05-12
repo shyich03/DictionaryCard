@@ -78,7 +78,7 @@ if __name__ == "__main__":
                 titleX = (720-lineLength)/2
                 titleY = 0
             elif step == 1:
-                posY = 165
+                posY = 165 # desciprion 和title y坐标差
                 width,descText = TransformText(line, descSize, 'Dubai-Regular')
                 descFont = ImageFont.truetype('fonts/Dubai-Regular.ttf', descSize)
                 descX = (690-width)/2
@@ -88,6 +88,8 @@ if __name__ == "__main__":
                         # d.text(pos, text, font=font, fill=(0, 0, 1))
                         descY += [posY]
                         posY+=descSize+linebreak
+                # descY 中保存每一行的y坐标
+                # desc 中保存一行一行的desc
             elif step == 2:
                 posY += descSize+linebreak
                 exampleText = TransformText(line, descSize, 'Dubai-Light', width)[1]
@@ -100,14 +102,21 @@ if __name__ == "__main__":
                         # d.text(pos, text, font=font, fill=(0, 0, 1))
                         exampleY += [posY]
                         posY+=descSize+linebreak
+                # example 与desc同理
             else:
                 if line == "\n":
-                    baseHeight = (620-posY)/2
+                    baseHeight = (620-posY)/2 #根据文字总高度算上margin
+
+                    # print title to picture
                     d.text((titleX,titleY+baseHeight), title, font=titleFont, fill=(0, 0, 1))
+
+                    # print desc to picture
                     for i in range(len(descText)):
                         text = descText[i]
                         if text!="\n ":
                             d.text((descX, descY[i]+baseHeight), text, font=descFont, fill=(0, 0, 1))
+
+                    # print example to picture
                     for i in range(len(exampleText)):
                         text = exampleText[i]
                         if text!="\n ":
@@ -118,7 +127,8 @@ if __name__ == "__main__":
                     print(line)
                     print ("Error with text file while create png for ",title)
                     break
-            
+
+            # 注意这里要把4换掉
             step = (step + 1)%4
 
 
